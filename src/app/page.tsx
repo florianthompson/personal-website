@@ -38,6 +38,27 @@ const liveProjects: Project[] = [
   },
 ];
 
+interface Experience {
+  name: string;
+  role: string;
+  period: string;
+  href?: string;
+}
+
+const experience: Experience[] = [
+  {
+    name: "Clarity Money (acq. Goldman Sachs)",
+    role: "Founding team — personal finance app acquired in 2018.",
+    period: "2014 – 2018",
+    href: "https://www.goldmansachs.com/pressroom/press-releases/2018/announcement-15-apr-2018",
+  },
+  {
+    name: "Goldman Sachs",
+    role: "Integrated Clarity Money into Marcus by Goldman Sachs.",
+    period: "2018 – 2020",
+  },
+];
+
 const devProjects: Project[] = [
   {
     name: "Sprout",
@@ -129,6 +150,46 @@ function ProjectRow({
   );
 }
 
+function ExperienceRow({ item }: { item: Experience }) {
+  const inner = (
+    <div className="flex justify-between items-start gap-4">
+      <div className="flex-1 min-w-0">
+        <div className="text-[0.9375rem] font-medium leading-snug mb-1">
+          {item.name}
+        </div>
+        <div className="text-[0.8125rem] text-text-secondary leading-relaxed">
+          {item.role}
+        </div>
+      </div>
+      <div className="shrink-0 flex items-center gap-2">
+        <span className="text-[0.75rem] text-text-muted font-mono whitespace-nowrap">
+          {item.period}
+        </span>
+        {item.href && (
+          <ArrowUpRight className="text-text-faint transition-all duration-150 group-hover:text-text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        )}
+      </div>
+    </div>
+  );
+
+  if (item.href) {
+    return (
+      <a
+        href={item.href}
+        className="group block py-4 px-2 -mx-2 border-b border-border rounded transition-colors duration-150 hover:bg-row-hover"
+        target="_blank"
+        rel="noopener"
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div className="block py-4 px-2 -mx-2 border-b border-border">{inner}</div>
+  );
+}
+
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-text-muted pb-3 border-b border-border">
@@ -149,8 +210,16 @@ export default function Home() {
           I like to build things.
         </p>
         <p className="text-sm text-text-secondary leading-relaxed mb-5">
-          Technical founder from Munich. Spent 9 years in New York — Clarity
-          Money, Goldman Sachs, and a Shopify agency. Now back in Munich.
+          Technical founder from Munich. Spent 9 years in New York —{" "}
+          <a
+            href="https://www.goldmansachs.com/pressroom/press-releases/2018/announcement-15-apr-2018"
+            target="_blank"
+            rel="noopener"
+            className="text-text-secondary underline decoration-border underline-offset-2 transition-colors duration-150 hover:text-text-primary"
+          >
+            Clarity Money
+          </a>
+          , Goldman Sachs, and a Shopify agency. Now back in Munich.
         </p>
         <div className="flex flex-wrap gap-5">
           <a
@@ -193,6 +262,14 @@ export default function Home() {
         <SectionLabel>In Development</SectionLabel>
         {devProjects.map((project) => (
           <ProjectRow key={project.name} project={project} variant="dev" />
+        ))}
+      </section>
+
+      {/* Experience */}
+      <section className="mb-14">
+        <SectionLabel>Experience</SectionLabel>
+        {experience.map((item) => (
+          <ExperienceRow key={item.name} item={item} />
         ))}
       </section>
 
