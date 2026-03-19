@@ -178,9 +178,16 @@ export default function Home() {
     <div className="max-w-[600px] mx-auto px-6 pt-20 pb-16 max-sm:px-5 max-sm:pt-12 max-sm:pb-12">
       {/* Header */}
       <header className="mb-14">
-        <h1 className="font-serif font-normal text-[1.75rem] tracking-tight leading-tight mb-3 max-sm:text-[1.5rem]">
-          Florian Thompson
-        </h1>
+        <div className="flex items-center gap-3 mb-3">
+          <img
+            src="/florian.jpg"
+            alt="Florian Thompson"
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <h1 className="font-serif font-normal text-[1.75rem] tracking-tight leading-tight max-sm:text-[1.5rem]">
+            Florian Thompson
+          </h1>
+        </div>
         <p className="text-[0.9375rem] text-text-secondary leading-relaxed mb-5">
           I like to build things. Technical founder based in Munich.
           <br className="max-sm:hidden" /> Previously Clarity Money,
@@ -192,7 +199,7 @@ export default function Home() {
         </p>
         <div className="flex flex-wrap gap-5">
           <a
-            href="https://linkedin.com/in/"
+            href="https://www.linkedin.com/in/florianthompson/"
             target="_blank"
             rel="noopener"
             className="text-[0.8125rem] text-text-muted no-underline transition-colors duration-150 hover:text-text-primary"

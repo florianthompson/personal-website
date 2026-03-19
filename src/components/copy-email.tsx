@@ -13,12 +13,9 @@ export function CopyEmail({ email }: { email: string }) {
 
   return (
     <span className="inline-flex items-center gap-1.5">
-      <a
-        href={`mailto:${email}`}
-        className="text-[0.8125rem] text-text-muted no-underline transition-colors duration-150 hover:text-text-primary"
-      >
+      <span className="text-[0.8125rem] text-text-muted">
         {email}
-      </a>
+      </span>
       <button
         onClick={handleCopy}
         className="text-text-muted transition-colors duration-150 hover:text-text-primary cursor-pointer"
