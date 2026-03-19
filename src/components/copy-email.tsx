@@ -17,7 +17,7 @@ export function CopyEmail({ email }: { email: string }) {
         href={`mailto:${email}`}
         className="text-[0.8125rem] text-text-muted no-underline transition-colors duration-150 hover:text-text-primary"
       >
-        Email
+        {email}
       </a>
       <button
         onClick={handleCopy}

@@ -103,7 +103,7 @@ function ProjectRow({ project }: { project: Project }) {
       {project.link && (
         <div className="shrink-0 flex items-center gap-1 mt-0.5">
           <span className="text-[0.75rem] text-text-muted whitespace-nowrap">
-            {project.link}
+            View
           </span>
           <ArrowUpRight className="text-text-faint transition-all duration-150 group-hover:text-text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
