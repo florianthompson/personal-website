@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "@/components/arrow-up-right";
+import { CopyEmail } from "@/components/copy-email";
 
 interface Project {
   name: string;
@@ -12,8 +13,8 @@ const projects: Project[] = [
   {
     name: "SEOPilot",
     description: "AI content automation for Shopify merchants.",
-    link: "seopilot.io",
-    href: "#",
+    link: "getseopilot.com",
+    href: "https://getseopilot.com",
   },
   {
     name: "Clerk",
@@ -35,7 +36,9 @@ const projects: Project[] = [
   },
   {
     name: "TweetRead",
-    description: "REST API for AI agents to extract articles from X posts.",
+    description: "Let your agent learn from X posts.",
+    link: "tweetread.vercel.app",
+    href: "https://tweetread.vercel.app/",
   },
   {
     name: "Protokoll",
@@ -73,7 +76,7 @@ const helping: HelpEntry[] = [
     what: "Building apps for their communities.",
   },
   {
-    who: "Friends",
+    who: "Founders",
     what: "Automating daily work with AI agents.",
   },
 ];
@@ -180,26 +183,12 @@ export default function Home() {
         </h1>
         <p className="text-[0.9375rem] text-text-secondary leading-relaxed mb-5">
           I like to build things. Technical founder based in Munich.
-          <br className="max-sm:hidden" />{" "}
-          Previously{" "}
-          <a
-            href="https://www.goldmansachs.com/pressroom/press-releases/2018/announcement-15-apr-2018"
-            target="_blank"
-            rel="noopener"
-            className="text-text-secondary underline decoration-border underline-offset-2 transition-colors duration-150 hover:text-text-primary"
-          >
-            Clarity Money
-          </a>
-          , Goldman Sachs, and a{" "}
-          <a
-            href="https://hazil.studio"
-            target="_blank"
-            rel="noopener"
-            className="text-text-secondary underline decoration-border underline-offset-2 transition-colors duration-150 hover:text-text-primary"
-          >
-            NYC Shopify agency
-          </a>
-          .
+          <br className="max-sm:hidden" /> Previously Clarity Money,
+          Goldman Sachs in New York,
+          <br className="max-sm:hidden" /> then co-founded Hazil Studios,
+          a Shopify agency
+          <br className="max-sm:hidden" /> that launched 500+ stores
+          (UPS, NYFW).
         </p>
         <div className="flex flex-wrap gap-5">
           <a
@@ -212,7 +201,7 @@ export default function Home() {
           </a>
           <span className="text-border select-none">·</span>
           <a
-            href="https://github.com/"
+            href="https://github.com/florianthompson"
             target="_blank"
             rel="noopener"
             className="text-[0.8125rem] text-text-muted no-underline transition-colors duration-150 hover:text-text-primary"
@@ -220,12 +209,7 @@ export default function Home() {
             GitHub
           </a>
           <span className="text-border select-none">·</span>
-          <a
-            href="mailto:florian@hazilstudios.com"
-            className="text-[0.8125rem] text-text-muted no-underline transition-colors duration-150 hover:text-text-primary"
-          >
-            Email
-          </a>
+          <CopyEmail email="florian@hazil.studio" />
         </div>
       </header>
 
