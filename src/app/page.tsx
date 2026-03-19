@@ -9,6 +9,13 @@ interface Project {
 
 const liveProjects: Project[] = [
   {
+    name: "Clerk",
+    description:
+      "Your personal AI assistant that does the work.",
+    tags: ["AI Assistant"],
+    href: "https://heyclerk.so",
+  },
+  {
     name: "SEOPilot",
     description:
       "AI content automation SaaS for Shopify merchants. Generates product-aware SEO articles and auto-publishes to stores.",
