@@ -3,192 +3,80 @@ import { ArrowUpRight } from "@/components/arrow-up-right";
 interface Project {
   name: string;
   description: string;
-  tags: string[];
+  link?: string;
+  linkLabel?: string;
   href?: string;
 }
 
-const liveProjects: Project[] = [
+const projects: Project[] = [
+  {
+    name: "SEOPilot",
+    description: "AI content automation for Shopify merchants.",
+    link: "seopilot.io",
+    href: "#",
+  },
   {
     name: "Clerk",
-    description:
-      "Your personal AI assistant that does the work.",
-    tags: ["AI Assistant"],
+    description: "Your personal AI assistant that does the work.",
+    link: "heyclerk.so",
     href: "https://heyclerk.so",
   },
   {
-    name: "SEOPilot",
-    description:
-      "AI content automation SaaS for Shopify merchants. Generates product-aware SEO articles and auto-publishes to stores.",
-    tags: ["Shopify", "Claude API", "Next.js"],
-    href: "#",
-  },
-  {
-    name: "TweetRead",
-    description:
-      "REST API for AI agents to extract linked article content from X posts.",
-    tags: ["Next.js", "REST API", "AI Agents"],
-    href: "#",
-  },
-  {
-    name: "Hazil Studios",
-    description:
-      "Shopify development and AI consulting agency. Clients include UPS and New York Fashion Week. 500+ stores launched.",
-    tags: ["Shopify", "Liquid", "Meta Ads"],
-    href: "#",
-  },
-];
-
-interface Experience {
-  name: string;
-  role: string;
-  period: string;
-  href?: string;
-}
-
-const experience: Experience[] = [
-  {
-    name: "Clarity Money (acq. Goldman Sachs)",
-    role: "Founding team — personal finance app acquired in 2018.",
-    period: "2014 – 2018",
-    href: "https://www.goldmansachs.com/pressroom/press-releases/2018/announcement-15-apr-2018",
-  },
-  {
-    name: "Goldman Sachs",
-    role: "Integrated Clarity Money into Marcus by Goldman Sachs.",
-    period: "2018 – 2020",
-  },
-];
-
-const devProjects: Project[] = [
-  {
     name: "Sprout",
-    description:
-      "Toddler activity finder app with freemium model and guided onboarding.",
-    tags: ["Expo", "Supabase", "RevenueCat"],
+    description: "Activity finder app for toddler parents.",
+    link: "sproutapp.de",
+    href: "https://sprout-website-omega.vercel.app/",
   },
   {
     name: "Binj",
-    description:
-      "Cross-platform social content saving app with a Venmo-style global feed.",
-    tags: ["React Native", "Supabase"],
+    description: "Social content saving with a shared feed.",
+    link: "binj.app",
+    href: "https://binj-web.vercel.app",
+  },
+  {
+    name: "TweetRead",
+    description: "REST API for AI agents to extract articles from X posts.",
+  },
+  {
+    name: "Protokoll",
+    description: "Digital patient protocols for paramedics.",
+    link: "nef-web.vercel.app",
+    href: "https://nef-web.vercel.app/",
   },
 ];
 
-function Tag({
-  children,
-  variant,
-}: {
-  children: React.ReactNode;
-  variant: "live" | "dev";
-}) {
-  return (
-    <span
-      className={`font-mono text-[0.6875rem] px-2.5 py-0.5 rounded-[3px] leading-snug ${
-        variant === "live"
-          ? "bg-tag-live-bg text-tag-live-text"
-          : "bg-tag-dev-bg text-tag-dev-text"
-      }`}
-    >
-      {children}
-    </span>
-  );
+interface HelpEntry {
+  who: string;
+  what: string;
+  link?: string;
+  linkLabel?: string;
+  href?: string;
 }
 
-function ProjectRow({
-  project,
-  variant,
-}: {
-  project: Project;
-  variant: "live" | "dev";
-}) {
-  const inner = (
-    <div className="flex justify-between items-start gap-4">
-      <div className="flex-1 min-w-0">
-        <div
-          className={`text-[0.9375rem] font-medium leading-snug mb-1 ${
-            variant === "dev" ? "text-text-secondary" : ""
-          }`}
-        >
-          {project.name}
-        </div>
-        <div
-          className={`text-[0.8125rem] leading-relaxed mb-2.5 ${
-            variant === "dev" ? "text-text-muted" : "text-text-secondary"
-          }`}
-        >
-          {project.description}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <Tag key={tag} variant={variant}>
-              {tag}
-            </Tag>
-          ))}
-        </div>
-      </div>
-      {project.href && (
-        <ArrowUpRight className="shrink-0 mt-0.5 text-text-faint transition-all duration-150 group-hover:text-text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      )}
-    </div>
-  );
-
-  if (project.href) {
-    return (
-      <a
-        href={project.href}
-        className="group block py-4 px-2 -mx-2 border-b border-border rounded transition-colors duration-150 hover:bg-row-hover"
-        target="_blank"
-        rel="noopener"
-      >
-        {inner}
-      </a>
-    );
-  }
-
-  return (
-    <div className="block py-4 px-2 -mx-2 border-b border-border">{inner}</div>
-  );
-}
-
-function ExperienceRow({ item }: { item: Experience }) {
-  const inner = (
-    <div className="flex justify-between items-start gap-4">
-      <div className="flex-1 min-w-0">
-        <div className="text-[0.9375rem] font-medium leading-snug mb-1">
-          {item.name}
-        </div>
-        <div className="text-[0.8125rem] text-text-secondary leading-relaxed">
-          {item.role}
-        </div>
-      </div>
-      <div className="shrink-0 flex items-center gap-2">
-        <span className="text-[0.75rem] text-text-muted font-mono whitespace-nowrap">
-          {item.period}
-        </span>
-        {item.href && (
-          <ArrowUpRight className="text-text-faint transition-all duration-150 group-hover:text-text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        )}
-      </div>
-    </div>
-  );
-
-  if (item.href) {
-    return (
-      <a
-        href={item.href}
-        className="group block py-4 px-2 -mx-2 border-b border-border rounded transition-colors duration-150 hover:bg-row-hover"
-        target="_blank"
-        rel="noopener"
-      >
-        {inner}
-      </a>
-    );
-  }
-
-  return (
-    <div className="block py-4 px-2 -mx-2 border-b border-border">{inner}</div>
-  );
-}
+const helping: HelpEntry[] = [
+  {
+    who: "Agency owner",
+    what: "Building her own travel app.",
+    link: "bindle",
+    href: "/bindle",
+  },
+  {
+    who: "CEO",
+    what: "Automating business operations with AI.",
+  },
+  {
+    who: "Paramedics",
+    what: "Digitalizing patient protocol workflows.",
+  },
+  {
+    who: "Moms",
+    what: "Building apps for their communities.",
+  },
+  {
+    who: "Friends",
+    what: "Automating daily work with AI agents.",
+  },
+];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -198,19 +86,102 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
+function ProjectRow({ project }: { project: Project }) {
+  const inner = (
+    <div className="flex justify-between items-start gap-4">
+      <div className="flex-1 min-w-0">
+        <div className="text-[0.9375rem] font-medium leading-snug mb-0.5">
+          {project.name}
+        </div>
+        <div className="text-[0.8125rem] text-text-secondary leading-relaxed">
+          {project.description}
+        </div>
+      </div>
+      {project.link && (
+        <div className="shrink-0 flex items-center gap-1 mt-0.5">
+          <span className="text-[0.75rem] text-text-muted whitespace-nowrap">
+            {project.link}
+          </span>
+          <ArrowUpRight className="text-text-faint transition-all duration-150 group-hover:text-text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </div>
+      )}
+    </div>
+  );
+
+  if (project.href) {
+    return (
+      <a
+        href={project.href}
+        className="group block py-3.5 px-2 -mx-2 border-b border-border rounded transition-colors duration-150 hover:bg-row-hover"
+        target={project.href.startsWith("/") ? undefined : "_blank"}
+        rel={project.href.startsWith("/") ? undefined : "noopener"}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div className="block py-3.5 px-2 -mx-2 border-b border-border">
+      {inner}
+    </div>
+  );
+}
+
+function HelpRow({ entry }: { entry: HelpEntry }) {
+  const inner = (
+    <div className="flex justify-between items-start gap-4">
+      <div className="flex-1 min-w-0">
+        <div className="text-[0.9375rem] font-medium leading-snug mb-0.5">
+          {entry.who}
+        </div>
+        <div className="text-[0.8125rem] text-text-secondary leading-relaxed">
+          {entry.what}
+        </div>
+      </div>
+      {entry.link && (
+        <div className="shrink-0 flex items-center gap-1 mt-0.5">
+          <span className="text-[0.75rem] text-text-muted whitespace-nowrap">
+            {entry.link}
+          </span>
+          <ArrowUpRight className="text-text-faint transition-all duration-150 group-hover:text-text-secondary group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </div>
+      )}
+    </div>
+  );
+
+  if (entry.href) {
+    return (
+      <a
+        href={entry.href}
+        className="group block py-3.5 px-2 -mx-2 border-b border-border rounded transition-colors duration-150 hover:bg-row-hover"
+        target={entry.href.startsWith("/") ? undefined : "_blank"}
+        rel={entry.href.startsWith("/") ? undefined : "noopener"}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div className="block py-3.5 px-2 -mx-2 border-b border-border">
+      {inner}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
-    <div className="max-w-[640px] mx-auto px-6 pt-20 pb-16 max-sm:px-5 max-sm:pt-12 max-sm:pb-12">
+    <div className="max-w-[600px] mx-auto px-6 pt-20 pb-16 max-sm:px-5 max-sm:pt-12 max-sm:pb-12">
       {/* Header */}
-      <header className="mb-16">
-        <h1 className="font-serif font-normal text-4xl tracking-tight leading-tight mb-2.5 max-sm:text-3xl">
+      <header className="mb-14">
+        <h1 className="font-serif font-normal text-[1.75rem] tracking-tight leading-tight mb-3 max-sm:text-[1.5rem]">
           Florian Thompson
         </h1>
-        <p className="text-[1.05rem] italic font-serif mb-2 max-sm:text-base">
-          I like to build things.
-        </p>
-        <p className="text-sm text-text-secondary leading-relaxed mb-5">
-          Technical founder from Munich. Spent 9 years in New York —{" "}
+        <p className="text-[0.9375rem] text-text-secondary leading-relaxed mb-5">
+          I like to build things. Technical founder based in Munich.
+          <br className="max-sm:hidden" />{" "}
+          Previously{" "}
           <a
             href="https://www.goldmansachs.com/pressroom/press-releases/2018/announcement-15-apr-2018"
             target="_blank"
@@ -219,7 +190,16 @@ export default function Home() {
           >
             Clarity Money
           </a>
-          , Goldman Sachs, and a Shopify agency. Now back in Munich.
+          , Goldman Sachs, and a{" "}
+          <a
+            href="https://hazil.studio"
+            target="_blank"
+            rel="noopener"
+            className="text-text-secondary underline decoration-border underline-offset-2 transition-colors duration-150 hover:text-text-primary"
+          >
+            NYC Shopify agency
+          </a>
+          .
         </p>
         <div className="flex flex-wrap gap-5">
           <a
@@ -249,33 +229,25 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Live Projects */}
-      <section className="mb-14">
-        <SectionLabel>Live</SectionLabel>
-        {liveProjects.map((project) => (
-          <ProjectRow key={project.name} project={project} variant="live" />
+      {/* What I'm building */}
+      <section className="mb-12">
+        <SectionLabel>What I&apos;m building</SectionLabel>
+        {projects.map((project) => (
+          <ProjectRow key={project.name} project={project} />
         ))}
       </section>
 
-      {/* In Development */}
-      <section className="mb-14">
-        <SectionLabel>In Development</SectionLabel>
-        {devProjects.map((project) => (
-          <ProjectRow key={project.name} project={project} variant="dev" />
-        ))}
-      </section>
-
-      {/* Experience */}
-      <section className="mb-14">
-        <SectionLabel>Experience</SectionLabel>
-        {experience.map((item) => (
-          <ExperienceRow key={item.name} item={item} />
+      {/* Who I'm helping use AI */}
+      <section className="mb-12">
+        <SectionLabel>Who I&apos;m helping use AI</SectionLabel>
+        {helping.map((entry) => (
+          <HelpRow key={entry.who} entry={entry} />
         ))}
       </section>
 
       {/* Footer */}
       <footer className="border-t border-border pt-8 mt-4">
-        <div className="text-[0.8125rem] text-text-muted leading-loose">
+        <div className="text-[0.75rem] text-text-muted">
           Clarity Money{" "}
           <span className="inline-block mx-1.5 opacity-45">→</span> Goldman
           Sachs <span className="inline-block mx-1.5 opacity-45">→</span>{" "}
